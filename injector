@@ -1,1 +1,6 @@
 
+-- Tidal Hub Original Script
+
+if game.PlaceId == 8111243563 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Gaming%20Lineage"))()
+end
