@@ -1,0 +1,221 @@
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local Player = game.Players.LocalPlayer
+
+local w = library:CreateWindow("Tidal Hub") -- Creates the window
+
+local b = w:CreateFolder("Cosmetics") -- Creates the folder(U will put here your buttons,etc)
+local c = w:CreateFolder('Hacks')
+local d = w:CreateFolder('Teleports')
+
+local z = w:CreateFolder('Settings')
+
+getgenv().Intent = false
+getgenv().Healer = false
+
+getgenv().Collectorfarm = false
+getgenv().CollectorNote = false
+
+local collector = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Desert = Instance.new("TextLabel")
+local Forest = Instance.new("TextLabel")
+local Scroom = Instance.new("TextLabel")
+local Tundra = Instance.new("TextLabel")
+
+--Properties:
+
+collector.Name = "collector"
+collector.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+collector.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+collector.ResetOnSpawn = false
+
+Frame.Parent = collector
+Frame.AnchorPoint = Vector2.new(1, 1)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.Position = UDim2.new(1, 0, 1, 0)
+Frame.Size = UDim2.new(0.150000006, 0, 0.150000006, 0)
+
+UIListLayout.Parent = Frame
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+
+Desert.Name = "Desert"
+Desert.Parent = Frame
+Desert.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Desert.BackgroundTransparency = 1.000
+Desert.Size = UDim2.new(1, 0, 0.200000003, 0)
+Desert.Font = Enum.Font.SourceSans
+Desert.Text = "Collector"
+Desert.TextColor3 = Color3.fromRGB(85, 0, 0)
+Desert.TextScaled = true
+Desert.TextSize = 14.000
+Desert.TextWrapped = true
+Desert.TextXAlignment = Enum.TextXAlignment.Right
+
+collector.Enabled = false
+
+
+
+
+--[[b:Label("ESP",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
+c:Label("Settings",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) ]]
+
+function CollectorNotifier()
+    spawn(function()
+        while getgenv().CollectorNote do
+            wait(1)
+            if workspace.CollecPart.Transparency ~= 0 then
+                Desert.TextColor3 = Color3.fromRGB(0,255,0)
+                workspace.Sus:Play()
+            else
+                Desert.TextColor3 = Color3.fromRGB(85,0 ,0)
+            end
+        end
+    end)
+end
+
+function CollectorFarmer()
+end
+
+
+z:DestroyGui()
+
+z:Button("Destroy Collector Notify",function()
+    collector:Destroy()
+end)
+
+b:Button("Destroy Helmet",function()
+    local Player = game.Players.LocalPlayer
+    if Player.Character:FindFirstChild('Sigil_Helmet') then
+       Player.Character:FindFirstChild('Sigil_Helmet'):Destroy()
+    end
+end)
+
+if Player.UserId == 29942316 then
+    b:Button("Chaos Shield",function()
+        local Player = game.Players.LocalPlayer
+        local Attachment = Instance.new('Attachment')
+        Attachment.Parent = Player.Character.HumanoidRootPart
+        Attachment.Position = Vector3.new(0,0,-2)
+
+        local Particles = Instance.new('ParticleEmitter')
+        Particles.Orientation = 'VelocityPerpendicular'
+        Particles.Parent = Attachment
+        Particles.Brightness = 1
+        Particles.Acceleration = Vector3.new(0,0,-0.009999999776482582);
+		Particles.RotSpeed = NumberRange.new(150);
+		Particles.Color = ColorSequence.new({ColorSequenceKeypoint.new(0,Color3.new(1,1/3,0)),ColorSequenceKeypoint.new(1,Color3.new(1,1/3,0))});
+		Particles.LockedToPart = true;
+		Particles.Rate = 1.5;
+		Particles.Rotation = NumberRange.new(-180,180);
+		Particles.Lifetime = NumberRange.new(3);
+		Particles.Speed = NumberRange.new(0);
+		Particles.Texture = "http://www.roblox.com/asset/?id=1346253336";
+		Particles.LightEmission = 1;
+		Particles.Size = NumberSequence.new({NumberSequenceKeypoint.new(0,2.5,0),NumberSequenceKeypoint.new(0.5,2.5,1),NumberSequenceKeypoint.new(1,2.5,0)});
+
+        Particles.Parent = Attachment
+        Particles.Enabled = true
+
+    end)
+end
+
+c:Toggle("Intent",function(bool)
+    getgenv().Intent = bool
+end)
+
+c:Toggle("Elemira",function(bool)
+    getgenv().Healer = bool
+end)
+
+c:Toggle("Collector Notify",function(bool)
+    getgenv().CollectorNote = bool
+    pcall(function()
+        if bool == true then
+         CollectorNotifier()
+         collector.Enabled = true
+         else
+        collector.Enabled = false
+        end
+    end)
+end)
+
+c:Button("Click Collector",function()
+    local Player = game.Players.LocalPlayer
+    local Collector = workspace.Kethe
+    Player.Character.HumanoidRootPart.CFrame = CFrame.new(Collector.HumanoidRootPart.Position)
+    fireclickdetector(Collector.ClickDetector)
+end)
+
+d:Button("Collector",function()
+    local Player = game.Players.LocalPlayer
+    local Collector = workspace.Kethe
+    Player.Character.HumanoidRootPart.CFrame = CFrame.new(Collector.HumanoidRootPart.Position)
+end)
+
+--[[b:Toggle("Crate ESP",function(bool)
+    getgenv().CrateESP = bool
+    print(shared.toggle)
+end)]]
+
+
+
+
+--[[b:Slider("Slider",{
+    min = 10; -- min value of the slider
+    max = 50; -- max value of the slider
+    precise = true; -- max 2 decimals
+},function(value)
+    print(value)
+end)]]
+
+--[[b:Dropdown("Dropdown",{"A","B","C"},true,function(mob) --true/false, replaces the current title "Dropdown" with the option that t
+    print(mob)
+end)]]
+
+--[[b:Bind("Bind",Enum.KeyCode.C,function() --Default bind
+    print("Yes")
+end)]]
+
+--[[b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color) --Default color
+    print(color)
+end)]]
+
+--[[b:Box("Box","number",function(value) -- "number" or "string"
+    print(value)
+end)]]
+
+
+
+--[[
+How to refresh a dropdown:
+1)Create the dropdown and save it in a variable
+local yourvariable = b:Dropdown("Hi",yourtable,function(a)
+    print(a)
+end)
+2)Refresh it using the function
+yourvariable:Refresh(yourtable)
+How to refresh a label:
+1)Create your label and save it in a variable
+local yourvariable = b:Label("Pretty Useless NGL",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+})
+2)Refresh it using the function
+yourvariable:Refresh("Hello") It will only change the text ofc
+]]
