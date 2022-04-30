@@ -1,4 +1,3 @@
-
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
 local w = library:CreateWindow("Tidal Hub") -- Creates the window
@@ -21,14 +20,16 @@ getgenv().PlayerESP = false
 getgenv().FlyTog = false
 getgenv().SpeedTog = false
 
+getgenv().NoKillbrick = false
 
---[[b:Label("Auto-Pickup",{
+
+d:Label("Unfinished :)",{
     TextSize = 25; -- Self Explaining
     TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
     BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
     
 }) 
-
+--[[
 z:Label("Settings",{
     TextSize = 25; -- Self Explaining
     TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
@@ -37,6 +38,162 @@ z:Label("Settings",{
 }) ]]
 
 z:DestroyGui()
+
+local collector = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Desert = Instance.new("TextLabel")
+local Forest = Instance.new("TextLabel")
+local Scroom = Instance.new("TextLabel")
+local Tundra = Instance.new("TextLabel")
+local Logo = Instance.new("ImageButton")
+local Silver = Instance.new("TextLabel")
+local Shadow = Instance.new("TextLabel")
+
+--Properties:
+
+collector.Name = "collector"
+collector.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+collector.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+collector.ResetOnSpawn = false
+
+Frame.Parent = collector
+Frame.AnchorPoint = Vector2.new(1, 1)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.Position = UDim2.new(1, 0, 1, 0)
+Frame.Size = UDim2.new(0.150000006, 0, 0.150000006, 0)
+
+UIListLayout.Parent = Frame
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+
+Desert.Name = "Desert"
+Desert.Parent = Frame
+Desert.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Desert.BackgroundTransparency = 1.000
+Desert.Size = UDim2.new(1, 0, 0.200000003, 0)
+Desert.Font = Enum.Font.SourceSans
+Desert.Text = "Desert"
+Desert.TextColor3 = Color3.fromRGB(85, 0, 0)
+Desert.TextScaled = true
+Desert.TextSize = 14.000
+Desert.TextWrapped = true
+Desert.TextXAlignment = Enum.TextXAlignment.Right
+
+Forest.Name = "Forest"
+Forest.Parent = Frame
+Forest.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Forest.BackgroundTransparency = 1.000
+Forest.Size = UDim2.new(1, 0, 0.200000003, 0)
+Forest.Font = Enum.Font.SourceSans
+Forest.Text = "Oresfall"
+Forest.TextColor3 = Color3.fromRGB(85, 0, 0)
+Forest.TextScaled = true
+Forest.TextSize = 14.000
+Forest.TextWrapped = true
+Forest.TextXAlignment = Enum.TextXAlignment.Right
+
+Scroom.Name = "Scroom"
+Scroom.Parent = Frame
+Scroom.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Scroom.BackgroundTransparency = 1.000
+Scroom.Size = UDim2.new(1, 0, 0.200000003, 0)
+Scroom.Font = Enum.Font.SourceSans
+Scroom.Text = "Scroom"
+Scroom.TextColor3 = Color3.fromRGB(85, 0, 0)
+Scroom.TextScaled = true
+Scroom.TextSize = 14.000
+Scroom.TextWrapped = true
+Scroom.TextXAlignment = Enum.TextXAlignment.Right
+
+Tundra.Name = "Tundra"
+Tundra.Parent = Frame
+Tundra.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tundra.BackgroundTransparency = 1.000
+Tundra.Size = UDim2.new(1, 0, 0.200000003, 0)
+Tundra.Font = Enum.Font.SourceSans
+Tundra.Text = "Tundra"
+Tundra.TextColor3 = Color3.fromRGB(85, 0, 0)
+Tundra.TextScaled = true
+Tundra.TextSize = 14.000
+Tundra.TextWrapped = true
+Tundra.TextXAlignment = Enum.TextXAlignment.Right
+
+Logo.Name = "Bell"
+Logo.Parent = collector
+Logo.Active = false
+Logo.AnchorPoint = Vector2.new(0, 1)
+Logo.BackgroundColor3 = Color3.fromRGB(248, 248, 248)
+Logo.BackgroundTransparency = 1.000
+Logo.Position = UDim2.new(0, 10, 1, -70)
+Logo.Selectable = false
+Logo.Size = UDim2.new(0, 20, 0, 21)
+Logo.SizeConstraint = Enum.SizeConstraint.RelativeXX
+Logo.AutoButtonColor = false
+Logo.Image = "rbxassetid://16961044"
+
+Silver.Name = "Bell"
+Silver.Parent = Logo
+Silver.AnchorPoint = Vector2.new(1, 0)
+Silver.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Silver.BackgroundTransparency = 1.000
+Silver.Position = UDim2.new(1, 5, 0, -1)
+Silver.Size = UDim2.new(0, 0, 0, 20)
+Silver.ZIndex = 2
+Silver.Font = Enum.Font.SourceSansBold
+Silver.Text = "0"
+Silver.TextColor3 = Color3.fromRGB(255, 255, 255)
+Silver.TextSize = 18.000
+Silver.TextStrokeColor3 = Color3.fromRGB(74, 74, 74)
+Silver.TextStrokeTransparency = 0.500
+Silver.TextXAlignment = Enum.TextXAlignment.Left
+
+Shadow.Name = "Shadow"
+Shadow.Parent = Silver
+Shadow.AnchorPoint = Vector2.new(1, 0)
+Shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Shadow.BackgroundTransparency = 1.000
+Shadow.Position = UDim2.new(0, 1, 0, 1)
+Shadow.Size = UDim2.new(0, 0, 1, 0)
+Shadow.Font = Enum.Font.SourceSansBold
+Shadow.Text = "0"
+Shadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+Shadow.TextSize = 18.000
+Shadow.TextStrokeColor3 = Color3.fromRGB(103, 103, 103)
+Shadow.TextTransparency = 0.600
+Shadow.TextXAlignment = Enum.TextXAlignment.Left
+
+collector.Enabled = false
+
+
+
+--[[while wait(3) do
+	Silver.Text = game.Players.LocalPlayer.Data.BellProgression.Value
+	Shadow.Text = game.Players.LocalPlayer.Data.BellProgression.Value
+	local NPCFolder = workspace.NPCs.Misc
+	if NPCFolder.DesertCollector.Head.Transparency ~= 1 then
+		Desert.TextColor3 = Color3.fromRGB(0,255,0)
+	else
+		Desert.TextColor3 = Color3.fromRGB(85,0 ,0)
+	end
+	if NPCFolder.ForestCollector.Head.Transparency ~= 1 then
+		Forest.TextColor3 = Color3.fromRGB(0,255,0)
+	else
+		Forest.TextColor3 = Color3.fromRGB(85,0 ,0)
+	end
+	if NPCFolder.TundraCollector.Head.Transparency ~= 1 then
+		Tundra.TextColor3 = Color3.fromRGB(0,255,0)
+	else
+		Tundra.TextColor3 = Color3.fromRGB(85,0 ,0)
+	end
+	if NPCFolder.ScroomvilleCollector.Head.Transparency ~= 1 then
+		Scroom.TextColor3 = Color3.fromRGB(0,255,0)
+	else
+		Scroom.TextColor3 = Color3.fromRGB(85,0 ,0)
+	end
+end]]
 
 --[[b:Button("Button",function()
     print("Elym Winning")
@@ -52,7 +209,8 @@ b:Toggle("Automatic Artifact Pickup",function(bool)
     print(shared.toggle)
 end)]]
 
-d:Toggle("Toggle ESP",function(bool)
+
+--[[d:Toggle("Toggle ESP",function(bool)
     getgenv().PlayerESP = bool
     print(shared.toggle)
 end)
@@ -70,9 +228,68 @@ end)
 d:Toggle("Show Health",function(bool)
     getgenv().HealthESP = bool
     print(shared.toggle)
+end)]]
+
+function CollectorNotifier()
+    spawn(function()
+        while getgenv().CollectorNotifier == true do
+            Silver.Text = game.Players.LocalPlayer.Data.BellProgression.Value
+            Shadow.Text = game.Players.LocalPlayer.Data.BellProgression.Value
+            local NPCFolder = workspace.NPCs.Misc
+            if NPCFolder.DesertCollector.Head.Transparency ~= 1 then
+                Desert.TextColor3 = Color3.fromRGB(0,255,0)
+            else
+                Desert.TextColor3 = Color3.fromRGB(85,0 ,0)
+            end
+            if NPCFolder.ForestCollector.Head.Transparency ~= 1 then
+                Forest.TextColor3 = Color3.fromRGB(0,255,0)
+            else
+                Forest.TextColor3 = Color3.fromRGB(85,0 ,0)
+            end
+            if NPCFolder.TundraCollector.Head.Transparency ~= 1 then
+                Tundra.TextColor3 = Color3.fromRGB(0,255,0)
+            else
+                Tundra.TextColor3 = Color3.fromRGB(85,0 ,0)
+            end
+            if NPCFolder.ScroomvilleCollector.Head.Transparency ~= 1 then
+                Scroom.TextColor3 = Color3.fromRGB(0,255,0)
+            else
+                Scroom.TextColor3 = Color3.fromRGB(85,0 ,0)
+            end
+            wait(1)
+        end
+    end)
+end
+
+
+c:Toggle("Collector Notifier",function(bool)
+    getgenv().CollectorNotifier = bool
+    if bool == true then
+        collector.Enabled = bool
+        CollectorNotifier()
+    else
+        collector.Enabled = bool
+    end
+end
+
+e:Toggle("No Kill Bricks",function(bool)
+    getgenv().NoKillbrick = bool
+    for _,Child in pairs(workspace.Map.KillBricks:GetChildren()) do
+        if Child:IsA('Part') then
+            if bool then
+                Child.CanTouch = false
+            elseif not bool then
+                Child.CanTouch = true
+            end
+        end
+    end
 end)
 
-e:Toggle("Toggle Fly",function(bool)
+e:Button("Fullbright",function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/06iG6YkU", true))()
+end)
+
+--[[e:Toggle("Toggle Fly",function(bool)
     getgenv().FlyTog = bool
     print(shared.toggle)
 end)
@@ -96,7 +313,7 @@ e:Slider("walkspeed",{
     precise = true; -- max 2 decimals
 },function(value)
     print(value)
-end)
+end)]]
 
 --[[b:Slider("Slider",{
     min = 10; -- min value of the slider
