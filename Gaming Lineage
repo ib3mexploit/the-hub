@@ -289,6 +289,11 @@ e:Button("Fullbright",function()
     loadstring(game:HttpGet("https://pastebin.com/raw/06iG6YkU", true))()
 end)
 
+e:Button("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+
 d:Button("Unnamed ESP",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua", true))()
 end)
