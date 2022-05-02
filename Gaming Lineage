@@ -21,6 +21,7 @@ getgenv().FlyTog = false
 getgenv().SpeedTog = false
 
 getgenv().NoKillbrick = false
+getgenv().Nofall = false
 
 --[[
 d:Label("Unfinished :)",{
@@ -284,6 +285,19 @@ e:Toggle("No Kill Bricks",function(bool)
         end
     end
 end)
+
+e:Toggle("No Fall Damage",function(bool)
+    getgenv().Nofall = bool
+    local Character = game.Players.LocalPlayer.Character
+    local Script = Character.FallDamage:WaitForChild()
+
+    if bool then
+        Script.Disabled = true
+    else
+        Script.Disabled = false
+    end
+end)
+
 
 e:Button("Fullbright",function()
     loadstring(game:HttpGet("https://pastebin.com/raw/06iG6YkU", true))()
