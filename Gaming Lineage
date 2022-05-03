@@ -38,7 +38,8 @@ z:Label("Settings",{
     
 }) ]]
 
-z:DestroyGui()
+
+
 
 local collector = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
@@ -231,6 +232,12 @@ d:Toggle("Show Health",function(bool)
     print(shared.toggle)
 end)]]
 
+z:DestroyGui()
+
+z:Button("Destroy Subsidiaries",function()
+    collector:Destroy()
+end)
+
 function CollectorNotifier()
     spawn(function()
         while getgenv().CollectorNotifier == true do
@@ -289,11 +296,11 @@ end)
 e:Toggle("No Fall Damage",function(bool)
     getgenv().Nofall = bool
     local Character = game.Players.LocalPlayer.Character
-    local Script = Character.FallDamage:WaitForChild()
+    local Script = Character:WaitForChild('FallDamage')
 
-    if bool then
+    if bool == true then
         Script.Disabled = true
-    else
+    elseif bool == false then
         Script.Disabled = false
     end
 end)
