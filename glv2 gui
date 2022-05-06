@@ -1,0 +1,237 @@
+return {
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local tidalhub = Instance.new("ScreenGui")
+local Bell = Instance.new("ImageLabel")
+local Value = Instance.new("TextLabel")
+local Shadow = Instance.new("TextLabel")
+local InfoFrame = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Health = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Subtitle = Instance.new("TextLabel")
+local Grips = Instance.new("Frame")
+local Title_2 = Instance.new("TextLabel")
+local Subtitle_2 = Instance.new("TextLabel")
+local Resonance = Instance.new("Frame")
+local Title_3 = Instance.new("TextLabel")
+local Subtitle_3 = Instance.new("TextLabel")
+local Race = Instance.new("Frame")
+local Title_4 = Instance.new("TextLabel")
+local Subtitle_4 = Instance.new("TextLabel")
+local Collector = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+
+--Properties:
+
+tidalhub.Name = "tidalhub"
+tidalhub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+tidalhub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Bell.Name = "Bell"
+Bell.Parent = tidalhub
+Bell.AnchorPoint = Vector2.new(0, 1)
+Bell.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Bell.BackgroundTransparency = 1.000
+Bell.BorderSizePixel = 0
+Bell.Position = UDim2.new(0, 10, 1, -70)
+Bell.Size = UDim2.new(0, 20, 0, 21)
+Bell.Image = "rbxassetid://7021995683"
+
+Value.Name = "Value"
+Value.Parent = Bell
+Value.AnchorPoint = Vector2.new(1, 0)
+Value.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Value.BackgroundTransparency = 1.000
+Value.Position = UDim2.new(1, 5, 0, -1)
+Value.Size = UDim2.new(0, 0, 0, 20)
+Value.ZIndex = 2
+Value.Font = Enum.Font.SourceSansBold
+Value.Text = "0"
+Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+Value.TextSize = 18.000
+Value.TextStrokeColor3 = Color3.fromRGB(74, 74, 74)
+Value.TextStrokeTransparency = 0.500
+Value.TextXAlignment = Enum.TextXAlignment.Left
+
+Shadow.Name = "Shadow"
+Shadow.Parent = Value
+Shadow.AnchorPoint = Vector2.new(1, 0)
+Shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Shadow.BackgroundTransparency = 1.000
+Shadow.Position = UDim2.new(0, 1, 0, 1)
+Shadow.Size = UDim2.new(0, 0, 1, 0)
+Shadow.Font = Enum.Font.SourceSansBold
+Shadow.Text = "0"
+Shadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+Shadow.TextSize = 18.000
+Shadow.TextStrokeColor3 = Color3.fromRGB(103, 103, 103)
+Shadow.TextTransparency = 0.600
+Shadow.TextXAlignment = Enum.TextXAlignment.Left
+
+InfoFrame.Name = "InfoFrame"
+InfoFrame.Parent = tidalhub
+InfoFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InfoFrame.BackgroundTransparency = 1.000
+InfoFrame.Position = UDim2.new(0, 100, 0, 0)
+InfoFrame.Size = UDim2.new(0, 500, 0, 40)
+
+UIListLayout.Parent = InfoFrame
+UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 10)
+
+Health.Name = "Health"
+Health.Parent = InfoFrame
+Health.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Health.BackgroundTransparency = 1.000
+Health.Position = UDim2.new(-0.0320000015, 0, 0, 0)
+Health.Size = UDim2.new(0, 100, 0, 100)
+
+Title.Name = "Title"
+Title.Parent = Health
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.Size = UDim2.new(0, 100, 0, 18)
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = "Health"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 18.000
+Title.TextStrokeTransparency = 0.550
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+Subtitle.Name = "Subtitle"
+Subtitle.Parent = Health
+Subtitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle.BackgroundTransparency = 1.000
+Subtitle.Position = UDim2.new(0, 0, 0, 16)
+Subtitle.Size = UDim2.new(0, 100, 0, 18)
+Subtitle.Font = Enum.Font.SourceSansSemibold
+Subtitle.Text = "000 / 000"
+Subtitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle.TextSize = 18.000
+Subtitle.TextStrokeTransparency = 0.550
+Subtitle.TextTransparency = 0.200
+Subtitle.TextXAlignment = Enum.TextXAlignment.Left
+
+Grips.Name = "Grips"
+Grips.Parent = InfoFrame
+Grips.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Grips.BackgroundTransparency = 1.000
+Grips.Position = UDim2.new(-0.0320000015, 0, 0, 0)
+Grips.Size = UDim2.new(0, 100, 0, 100)
+
+Title_2.Name = "Title"
+Title_2.Parent = Grips
+Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.BackgroundTransparency = 1.000
+Title_2.Size = UDim2.new(0, 100, 0, 18)
+Title_2.Font = Enum.Font.SourceSansBold
+Title_2.Text = "Rank Grips"
+Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.TextSize = 18.000
+Title_2.TextStrokeTransparency = 0.550
+Title_2.TextXAlignment = Enum.TextXAlignment.Left
+
+Subtitle_2.Name = "Subtitle"
+Subtitle_2.Parent = Grips
+Subtitle_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle_2.BackgroundTransparency = 1.000
+Subtitle_2.Position = UDim2.new(0, 0, 0, 16)
+Subtitle_2.Size = UDim2.new(0, 100, 0, 18)
+Subtitle_2.Font = Enum.Font.SourceSansSemibold
+Subtitle_2.Text = "0"
+Subtitle_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle_2.TextSize = 18.000
+Subtitle_2.TextStrokeTransparency = 0.550
+Subtitle_2.TextTransparency = 0.200
+Subtitle_2.TextXAlignment = Enum.TextXAlignment.Left
+
+Resonance.Name = "Resonance"
+Resonance.Parent = InfoFrame
+Resonance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Resonance.BackgroundTransparency = 1.000
+Resonance.Position = UDim2.new(-0.0320000015, 0, 0, 0)
+Resonance.Size = UDim2.new(0, 150, 0, 100)
+
+Title_3.Name = "Title"
+Title_3.Parent = Resonance
+Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_3.BackgroundTransparency = 1.000
+Title_3.Size = UDim2.new(0, 100, 0, 18)
+Title_3.Font = Enum.Font.SourceSansBold
+Title_3.Text = "Resonance"
+Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_3.TextSize = 18.000
+Title_3.TextStrokeTransparency = 0.550
+Title_3.TextXAlignment = Enum.TextXAlignment.Left
+
+Subtitle_3.Name = "Subtitle"
+Subtitle_3.Parent = Resonance
+Subtitle_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle_3.BackgroundTransparency = 1.000
+Subtitle_3.Position = UDim2.new(0, 0, 0, 16)
+Subtitle_3.Size = UDim2.new(0, 100, 0, 18)
+Subtitle_3.Font = Enum.Font.SourceSansSemibold
+Subtitle_3.Text = "Corrupted Run-It-Back"
+Subtitle_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle_3.TextSize = 18.000
+Subtitle_3.TextStrokeTransparency = 0.550
+Subtitle_3.TextTransparency = 0.200
+Subtitle_3.TextXAlignment = Enum.TextXAlignment.Left
+
+Race.Name = "Race"
+Race.Parent = InfoFrame
+Race.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Race.BackgroundTransparency = 1.000
+Race.Position = UDim2.new(-0.0320000015, 0, 0, 0)
+Race.Size = UDim2.new(0, 100, 0, 100)
+
+Title_4.Name = "Title"
+Title_4.Parent = Race
+Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_4.BackgroundTransparency = 1.000
+Title_4.Size = UDim2.new(0, 100, 0, 18)
+Title_4.Font = Enum.Font.SourceSansBold
+Title_4.Text = "Race"
+Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_4.TextSize = 18.000
+Title_4.TextStrokeTransparency = 0.550
+Title_4.TextXAlignment = Enum.TextXAlignment.Left
+
+Subtitle_4.Name = "Subtitle"
+Subtitle_4.Parent = Race
+Subtitle_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle_4.BackgroundTransparency = 1.000
+Subtitle_4.Position = UDim2.new(0, 0, 0, 16)
+Subtitle_4.Size = UDim2.new(0, 100, 0, 18)
+Subtitle_4.Font = Enum.Font.SourceSansSemibold
+Subtitle_4.Text = "LesserNavaran"
+Subtitle_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle_4.TextSize = 18.000
+Subtitle_4.TextStrokeTransparency = 0.550
+Subtitle_4.TextTransparency = 0.200
+Subtitle_4.TextXAlignment = Enum.TextXAlignment.Left
+
+Collector.Name = "Collector"
+Collector.Parent = tidalhub
+Collector.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Collector.BackgroundTransparency = 1.000
+Collector.Position = UDim2.new(0.72225374, 0, 0, 0)
+Collector.Size = UDim2.new(0, 150, 0, 25)
+
+TextLabel.Parent = Collector
+TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "<b> <font color=\"rgb(255,0,0)\">D</font><font color=\"rgb(0,255,0)\">O</font><font color=\"rgb(0,255,0)\">T</font><font color=\"rgb(0,255,0)\">S</font> </b>"
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 4)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true}
