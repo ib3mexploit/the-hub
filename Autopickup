@@ -1,0 +1,224 @@
+local Players               = game:GetService'Players';
+local LocalPlayer           = Players.LocalPlayer;
+local Mouse                 = LocalPlayer:GetMouse();
+local Camera                = workspace.CurrentCamera;
+local RunService            = game:GetService'RunService';
+local UIS                   = game:GetService'UserInputService';
+local TweenService          = game:GetService'TweenService';
+local Debris                = game:GetService'Debris';
+local Enabled               = true;
+local NearestObject         = nil;
+local LastObject            = NearestObject;
+local LastCheck             = 0;
+local PositionFrom          = Vector2.new();
+local PositionTo            = Vector2.new();
+local Vector2Up             = Vector2.new(0, 1);
+local Vector2Down           = Vector2.new(0, -1);
+local Vector2Right          = Vector2.new(1, 0);
+local Vector2Left           = Vector2.new(-1, 0);
+local White                 = Color3.new(1, 1, 1);
+
+local TrinketAP             = true;
+
+shared.Blacklist            = shared.Blacklist or {};
+
+local Drawings              = shared.Drawings or {};
+
+local Line                  = Drawings.NearestObjectLine or Drawing.new'Line';
+    Line.Thickness          = 2;
+    Line.Visible            = true;
+    Line.Transparency       = 0.75;
+
+local Text                  = Drawings.InfoText or Drawing.new'Text';
+    Text.Outline            = true;
+    Text.Center             = true;
+    Text.Size               = 20;
+    Text.Visible            = true;
+    Text.Text               = ' ';
+    Text.Color              = Color3.new(1, 1, 1);
+    Text.Transparency       = 1;
+
+local ExtraText             = Drawings.InfoTextExtra or Drawing.new'Text';
+    ExtraText.Outline       = true;
+    ExtraText.Center        = true;
+    ExtraText.Size          = 16;
+    ExtraText.Visible       = true;
+    ExtraText.Text          = '';
+    ExtraText.Color         = Color3.new(1, 1, 1);
+    ExtraText.Transparency  = 1;
+
+Drawings.NearestObjectLine  = Line;
+Drawings.InfoText           = Text;
+Drawings.InfoTextExtra      = ExtraText;
+
+shared.Drawings             = Drawings;
+
+local Clickables = {};
+local TP = {};
+local Trinkets = {};
+
+local TrinketIDs = {
+    ['Goblet'] = {
+        ['MeshId'] = 'rbxassetid://%2013116112%20';
+    };
+    ['Old Ring'] = {
+        ['MeshId'] = 'rbxassetid://%202637545558%20';
+    };
+    ['Old Amulet'] = {
+        ['Color'] = '0.623529, 0.631373, 0.67451';
+        ['Size'] = '0.333724976, 1.20092773, 2.03625488';
+    };
+    ['Forgotten Idol'] = {
+        ['Color'] = '0.435294, 0.443137, 0.490196';
+    };
+    ['Scroll'] = {
+        ['MeshId'] = 'rbxassetid://%2060791940%20';
+    };
+}
+
+function Get(t, i)
+    return t[i];
+end
+
+function DetectTrinket(Instance)
+    for i, v in pairs(TrinketIDs) do
+        local same = true;
+        local val = pcall(Get, Instance, i);
+        if val ~= v then
+            same = false;
+        end
+    end
+end
+
+for i, v in pairs(workspace:GetDescendants()) do
+    if v.ClassName == 'ClickDetector' and (v.Parent:IsA'BasePart' or v.Parent:IsA'UnionOperation') then
+        table.insert(Clickables, v.Parent);
+        TP[tostring(v.Parent.Position)] = v;
+    end
+end
+
+for i, v in pairs(workspace:GetChildren()) do
+    if (v:IsA'BasePart' or v:IsA'UnionOperation') and TP[tostring(v.Position)] ~= nil then
+        -- Trinkets[#Trinkets + 1] = {v, }
+        table.insert(Trinkets, v);
+    end
+end
+
+if shared.WSDC then shared.WSDC:disconnect(); end
+
+shared.WSDC = workspace.DescendantAdded:connect(function(child)
+    if (child:IsA'BasePart' or child:IsA'UnionOperation') and wait(1 / 3) then
+        if child:FindFirstChildOfClass'ClickDetector' then
+            table.insert(Clickables, child);
+            TP[tostring(child.Position)] = child:FindFirstChildOfClass'ClickDetector';
+        end
+        if TP[tostring(child.Position)] ~= nil then
+            table.insert(Trinkets, child);
+        end
+    end
+end);
+
+function GetNearestObject()
+    if #Trinkets < 1 then return false; end
+
+    local Closest = Trinkets[math.random(#Trinkets)];
+    local Distance = (Camera.CFrame.p - Closest.Position).magnitude;
+
+    for i, v in pairs(Trinkets) do
+        local LDistance = (Camera.CFrame.p - v.Position).magnitude;
+        if TrinketAP and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild'Head' and (LocalPlayer.Character.Head.Position - v.Position).magnitude <= 15 and TP[tostring(v.Position)] then
+            fireclickdetector(TP[tostring(v.Position)]);
+            --fireclickdetector(v:FindFirstChildWhichIsA('ClickDetector', true))
+        end
+        if LDistance < Distance and not shared.Blacklist[v] and v:IsDescendantOf(workspace) then
+            Distance = LDistance;
+            Closest = v;
+        end
+    end
+
+    return Closest;
+end
+
+if shared.UIS_Connection then shared.UIS_Connection:disconnect(); end
+
+shared.UIS_Connection = UIS.InputEnded:connect(function(Input, Processed)
+	if Processed then return end
+
+	if Input.UserInputType.Name == 'Keyboard' then
+		if Input.KeyCode == Enum.KeyCode.F1 then
+            Enabled = not Enabled;
+        elseif Input.KeyCode == Enum.KeyCode.KeypadNine then
+            shared.Blacklist[NearestObject] = true;
+        elseif Input.KeyCode == Enum.KeyCode.KeypadSix and (LocalPlayer.Character.Head.Position - NearestObject.Position).magnitude < 15 then
+            fireclickdetector(TP[tostring(NearestObject.Position)]);
+        elseif Input.KeyCode == Enum.KeyCode.KeypadFive then
+            TrinketAP = not TrinketAP;
+            print('tap', TrinketAP);
+        end
+    elseif Input.UserInputType.Name == 'MouseButton1' then
+        
+	end
+end)
+
+RunService:UnbindFromRenderStep'NOL';
+
+RunService:BindToRenderStep('NOL', 0, function()
+    if Enabled and tick() - LastCheck > 1 / 8 then
+        LastCheck     = tick();
+        NearestObject = GetNearestObject();
+    end
+
+    if NearestObject then
+        PositionFrom = UIS:GetMouseLocation();
+
+        local LocalCF = LocalPlayer.Character:GetPrimaryPartCFrame();
+        local LocalPosition = LocalCF.p;
+
+        local Distance  = 0;
+        local Extra     = {
+            Text = '';
+            Color = White;
+        };
+
+        -- if input and input.down.pagedown and tp and (LocalPosition - NearestObject.Position).magnitude < 50 then
+        --     tp(LocalPosition:lerp(NearestObject.Position, .5));
+        -- end
+
+        if Enabled and NearestObject then 
+            local ScreenPoint = Camera:WorldToViewportPoint(NearestObject.Position);
+            
+            if ScreenPoint.Z > 0 then
+                Distance    = math.floor((Camera.CFrame.p - NearestObject.Position).magnitude);
+                PositionTo  = Vector2.new(ScreenPoint.X, ScreenPoint.Y);
+            else
+                PositionTo = PositionFrom;
+            end
+        else
+            PositionTo  = PositionFrom;
+            Distance    = 0;
+        end
+
+        Text.Position       = PositionFrom + (Vector2Down * 40);        
+        ExtraText.Position  = Text.Position + (Vector2Up * (Text.TextBounds.Y));
+
+        if Enabled and NearestObject ~= nil and PositionFrom ~= PositionTo then
+            Text.Visible        = true;
+            ExtraText.Visible   = true;
+            Line.Visible        = true;
+            Line.From           = PositionFrom;
+            Line.To             = Line.To:lerp(PositionTo, .35);
+            Line.Color          = Color3.fromHSV(tick() * 24 % 255/255, 1, 1);
+            Text.Text           = ('%s [%s]'):format('Trinket', Distance);
+            ExtraText.Color     = Extra.Color;
+            ExtraText.Text      = Extra.Text;
+        else
+            Line.Visible        = false;
+            Text.Visible        = false;
+            ExtraText.Visible   = false;
+        end
+    else
+        Line.Visible            = false;
+        Text.Visible            = false;
+        ExtraText.Visible       = false;
+    end
+end)
