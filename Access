@@ -1,10 +1,10 @@
 return {
-    '03147DAE-E609-444F-A63F-54DA3F11B153' = 'Free', -- annoying immigrant
-    '3FF2494F-2B3C-4C1E-98EB-6C8DD1C38631' = 'Free', -- rat
-    '527B80D5-33C4-4899-B5C4-3F3E9DA98E81' = 'Free', -- idk who this is tbh
-    'BA9C847B-8684-A114-A6E4-2CF05DD90385' = 'Premium', -- love u heart
-    '151EC515-B2CE-42F4-A9A9-BADB5F470C6E'= 'Free', -- retarded alabama kid
-    '9864B118-0168-41DE-B601-16535777B936'= 'Developer', -- real
-    '6CF7C61C-B88C-4EC2-8A7D-86A1F47D3FC5' = 'Free', -- femboy guilty kid
-    '4B1AC62E-586E-4C74-A6F2-6D6D5AF41A3D' = 'Free' -- femboy guilty kids friend
+    03147DAE-E609-444F-A63F-54DA3F11B153 = 'Free', -- annoying immigrant
+    3FF2494F-2B3C-4C1E-98EB-6C8DD1C38631 = 'Free', -- rat
+    527B80D5-33C4-4899-B5C4-3F3E9DA98E81 = 'Free', -- idk who this is tbh
+    BA9C847B-8684-A114-A6E4-2CF05DD90385 = 'Premium', -- love u heart
+    151EC515-B2CE-42F4-A9A9-BADB5F470C6E = 'Free', -- retarded alabama kid
+    9864B118-0168-41DE-B601-16535777B936 = 'Developer', -- real
+    6CF7C61C-B88C-4EC2-8A7D-86A1F47D3FC5 = 'Free', -- femboy guilty kid
+    4B1AC62E-586E-4C74-A6F2-6D6D5AF41A3D = 'Free' -- femboy guilty kids friend
     }
