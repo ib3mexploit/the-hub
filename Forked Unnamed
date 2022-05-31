@@ -144,10 +144,10 @@ local CustomTeams = { -- Games that don't use roblox's team system
 			return LocalTeam[Player.Name] and true or false;
 		end;
 	};
-	[5208655184] = {
+	[9212655914] = {
 		CheckTeam = function(Player)
-			local LocalLastName = LocalPlayer:GetAttribute'LastName' if not LocalLastName or IsStringEmpty(LocalLastName) then return true end
-			local PlayerLastName = Player:GetAttribute'LastName' if not PlayerLastName then return false end
+			local LocalLastName = LocalPlayer.leaderstats.LastName.Value if not LocalLastName or IsStringEmpty(LocalLastName) then return true end
+			local PlayerLastName = Player.leaderstats.LastName.Value if not PlayerLastName then return false end
 
 			return PlayerLastName == LocalLastName
 		end
@@ -199,7 +199,7 @@ local GetAliveState;
 local CustomRootPartName;
 
 local Modules = {
-	[5208655184] = {
+	[9212655914] = {
 		CustomESP = function()
 			-- if workspace:FindFirstChild'Live' then
 			-- 	for i, v in pairs(workspace.Live:GetChildren()) do
@@ -225,7 +225,7 @@ local Modules = {
 				Name = Name .. '\n[';
 
 				if Player.leaderstats.Prestige.Value > 0 then
-					Name = Name .. '#' .. tostring(Player:GetAttribute'Prestige') .. ' ';
+					Name = Name .. '#' .. tostring(Player.leaderstats.Prestige.Value) .. ' ';
 				end
 				if not IsStringEmpty(Player.leaderstats.HouseRank.Value) then
 					Prefix = Player.leaderstats.HouseRank.Value == 'Owner' and (Player.leaderstats.Gender>Value == 'Female' and 'Lady ' or 'Lord ') or '';
