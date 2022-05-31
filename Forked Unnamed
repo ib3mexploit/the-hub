@@ -214,7 +214,7 @@ local Modules = {
 			-- end
 		end;
 		CustomPlayerTag = function(Player)
-			if game.PlaceVersion < 457 then return '' end
+			--if game.PlaceVersion < 457 then return '' end
 
 			local Name = '';
 			local FirstName = Player:GetAttribute'FirstName'
