@@ -228,7 +228,7 @@ local Modules = {
 					Name = Name .. '#' .. tostring(Player.leaderstats.Prestige.Value) .. ' ';
 				end
 				if not IsStringEmpty(Player.leaderstats.HouseRank.Value) then
-					Prefix = Player.leaderstats.HouseRank.Value == 'Owner' and (Player.leaderstats.Gender>Value == 'Female' and 'Lady ' or 'Lord ') or '';
+					Prefix = Player.leaderstats.HouseRank.Value == 'Owner' and (Player.leaderstats.Gender.Value == 'Female' and 'Lady ' or 'Lord ') or '';
 				end
 				if not IsStringEmpty(FirstName) then
 					Name = Name .. '' .. Prefix .. FirstName;
