@@ -217,24 +217,24 @@ local Modules = {
 			--if game.PlaceVersion < 457 then return '' end
 
 			local Name = '';
-			local FirstName = Player:GetAttribute'FirstName'
+			local FirstName = Player.leaderstats.FirstName.Value
 
 			if typeof(FirstName) == 'string' and #FirstName > 0 then
 				local Prefix = '';
 				local Extra = {};
 				Name = Name .. '\n[';
 
-				if Player:GetAttribute'Prestige' > 0 then
+				if Player.leaderstats.Prestige.Value > 0 then
 					Name = Name .. '#' .. tostring(Player:GetAttribute'Prestige') .. ' ';
 				end
-				if not IsStringEmpty(Player:GetAttribute'HouseRank') then
-					Prefix = Player:GetAttribute'HouseRank' == 'Owner' and (Player:GetAttribute'Gender' == 'Female' and 'Lady ' or 'Lord ') or '';
+				if not IsStringEmpty(Player.leaderstats.HouseRank.Value) then
+					Prefix = Player.leaderstats.HouseRank.Value == 'Owner' and (Player.leaderstats.Gender>Value == 'Female' and 'Lady ' or 'Lord ') or '';
 				end
 				if not IsStringEmpty(FirstName) then
 					Name = Name .. '' .. Prefix .. FirstName;
 				end
-				if not IsStringEmpty(Player:GetAttribute'LastName') then
-					Name = Name .. ' ' .. Player:GetAttribute'LastName';
+				if not IsStringEmpty(Player.leaderstats.LastName.Value) then
+					Name = Name .. ' ' .. Player.leaderstats.LastName.Valu;
 				end
 
 				if not IsStringEmpty(Name) then Name = Name .. ']'; end
