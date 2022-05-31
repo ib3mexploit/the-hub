@@ -234,7 +234,7 @@ local Modules = {
 					Name = Name .. '' .. Prefix .. FirstName;
 				end
 				if not IsStringEmpty(Player.leaderstats.LastName.Value) then
-					Name = Name .. ' ' .. Player.leaderstats.LastName.Valu;
+					Name = Name .. ' ' .. Player.leaderstats.LastName.Value;
 				end
 
 				if not IsStringEmpty(Name) then Name = Name .. ']'; end
