@@ -75,12 +75,12 @@ local previousUiExists = game:GetService("CoreGui"):FindFirstChild("notification
 if previousUiExists then previousUiExists:Destroy() end
 
 openSound.Name = "OpenNotifSound"
-openSound.Volume = 0
+openSound.Volume = 1
 openSound.SoundId = "rbxassetid://9128519965"
 openSound.Parent = ss
 
 closeSound.Name = "CloseNotifSound"
-closeSound.Volume = 1
+closeSound.Volume = 0
 closeSound.SoundId = "rbxassetid://9128519965"
 closeSound.Parent = ss
 
