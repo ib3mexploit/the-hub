@@ -1,3 +1,3 @@
-if game.PlaceId == 9212655914 then
+if game.PlaceId == 9840631765 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Rogue%20Lineage%3A%20Friendship%20Is%20Magic"))()
 end
