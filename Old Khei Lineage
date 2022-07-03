@@ -1,6 +1,6 @@
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local Player = game.Players.LocalPlayer
-
+--i love old khei lineage
 local w = library:CreateWindow("Tidal Hub") -- Creates the window
 
 local b = w:CreateFolder("Cosmetics") -- Creates the folder(U will put here your buttons,etc)
