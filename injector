@@ -7,5 +7,5 @@ if game.PlaceId == 9530846958 then
 end
 
 if game.PlaceId == 10046661315 then
-    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Popeyes%20Lineage"))()
 end
