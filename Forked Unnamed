@@ -277,6 +277,85 @@ local Modules = {
 			return Name;
 		end;
 	};
+	
+	[10046661315] = {
+		CustomESP = function()
+			-- if workspace:FindFirstChild'Live' then
+			-- 	for i, v in pairs(workspace.Live:GetChildren()) do
+			-- 		if v.Name:sub(1, 1) == '.' then
+			-- 			local Main = v:FindFirstChild'Head';
+
+			-- 			if Main then
+			-- 				pcall(RenderList.AddOrUpdateInstance, RenderList, v, Main, v.Name:sub(2), Color3.fromRGB(250, 50, 40));
+			-- 			end
+			-- 		end
+			-- 	end
+			-- end
+		end;
+		CustomPlayerTag = function(Player)
+			--if game.PlaceVersion < 457 then return '' end
+
+			local Name = '';
+			local FirstName = Player.leaderstats.FirstName.Value
+
+			if typeof(FirstName) == 'string' and #FirstName > 0 then
+				local Prefix = '';
+				local Extra = {};
+				Name = Name .. '\n[';
+
+				if Player.leaderstats.Prestige.Value > 0 then
+					Name = Name .. '#' .. tostring(Player.leaderstats.Prestige.Value) .. ' ';
+				end
+				if not IsStringEmpty(Player.leaderstats.HouseRank.Value) then
+					Prefix = Player.leaderstats.HouseRank.Value == 'Owner' and (Player.leaderstats.Gender.Value == 'Female' and 'Lady ' or 'Lord ') or '';
+				end
+				if not IsStringEmpty(FirstName) then
+					Name = Name .. '' .. Prefix .. FirstName;
+				end
+				if not IsStringEmpty(Player.leaderstats.LastName.Value) then
+					Name = Name .. ' ' .. Player.leaderstats.LastName.Value;
+				end
+
+				if not IsStringEmpty(Name) then Name = Name .. ']'; end
+
+				local Character = GetCharacter(Player);
+
+				if Character then
+					if Character and Character:FindFirstChild'Danger' then table.insert(Extra, 'D'); end
+					if Character:FindFirstChild'ManaAbilities' and Character.ManaAbilities:FindFirstChild'ManaSprint' then table.insert(Extra, 'D1'); end
+
+					if Character:FindFirstChild'Mana'	 		then table.insert(Extra, 'M' .. math.floor(Character.Mana.Value)); end
+					if Character:FindFirstChild'Vampirism' 		then table.insert(Extra, 'V'); end
+					if Character:FindFirstChild'Observe'		then table.insert(Extra, 'ILL'); end
+					if Character:FindFirstChild'Inferi'			then table.insert(Extra, 'NEC'); end
+					if Character:FindFirstChild'World\'s Pulse' then table.insert(Extra, 'DZIN'); end
+					if Character:FindFirstChild'Shift'		 	then table.insert(Extra, 'MAD'); end
+					if Character:FindFirstChild'Head' and Character.Head:FindFirstChild'FacialMarking' then
+						local FM = Character.Head:FindFirstChild'FacialMarking';
+						if FM.Texture == 'http://www.roblox.com/asset/?id=4072968006' then
+							table.insert(Extra, 'HEALER');
+						elseif FM.Texture == 'http://www.roblox.com/asset/?id=4072914434' then
+							table.insert(Extra, 'SEER');
+						elseif FM.Texture == 'http://www.roblox.com/asset/?id=4094417635' then
+							table.insert(Extra, 'JESTER');
+						elseif FM.Texture == 'http://www.roblox.com/asset/?id=4072968656' then
+							table.insert(Extra, 'BLADE');
+						end
+					end
+				end
+				if Player:FindFirstChild'Backpack' then
+					if Player.Backpack:FindFirstChild'Observe' 			then table.insert(Extra, 'ILL');  end
+					if Player.Backpack:FindFirstChild'Inferi'			then table.insert(Extra, 'NEC');  end
+					if Player.Backpack:FindFirstChild'World\'s Pulse' 	then table.insert(Extra, 'DZIN'); end
+					if Player.Backpack:FindFirstChild'Shift'		 	then table.insert(Extra, 'MAD'); end
+				end
+
+				if #Extra > 0 then Name = Name .. ' [' .. table.concat(Extra, '-') .. ']'; end
+			end
+
+			return Name;
+		end;
+	};
 };
 
 if Modules[game.PlaceId] ~= nil then
