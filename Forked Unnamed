@@ -366,17 +366,17 @@ local Modules = {
 	};
 	[10046664286] = {
 		CustomESP = function()
-			-- if workspace:FindFirstChild'Live' then
-			-- 	for i, v in pairs(workspace.Live:GetChildren()) do
-			-- 		if v.Name:sub(1, 1) == '.' then
-			-- 			local Main = v:FindFirstChild'Head';
+			if workspace:FindFirstChild'Live' then
+			for i, v in pairs(workspace.Live:GetChildren()) do
+				if v.Name:sub(1, 1) == '.' then
+						local Main = v:FindFirstChild'Head';
 
-			-- 			if Main then
-			-- 				pcall(RenderList.AddOrUpdateInstance, RenderList, v, Main, v.Name:sub(2), Color3.fromRGB(250, 50, 40));
-			-- 			end
-			-- 		end
-			-- 	end
-			-- end
+						if Main then
+							pcall(RenderList.AddOrUpdateInstance, RenderList, v, Main, v.Name:sub(2), Color3.fromRGB(250, 50, 40));
+						end
+					end
+				end
+			end
 		end;
 		CustomPlayerTag = function(Player)
 			--if game.PlaceVersion < 457 then return '' end
