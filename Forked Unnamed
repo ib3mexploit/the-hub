@@ -364,7 +364,7 @@ local Modules = {
 			return Name;
 		end;
 	};
-		[10046664286] = {
+	[10046664286] = {
 		CustomESP = function()
 			-- if workspace:FindFirstChild'Live' then
 			-- 	for i, v in pairs(workspace.Live:GetChildren()) do
@@ -442,8 +442,7 @@ local Modules = {
 			return Name;
 		end;
 	};
-	};
-};
+}
 
 if Modules[game.PlaceId] ~= nil then
 	local Module = Modules[game.PlaceId];
