@@ -363,7 +363,7 @@ local Modules = {
 
 			return Name;
 		end;
-		
+	};
 		[10046664286] = {
 		CustomESP = function()
 			-- if workspace:FindFirstChild'Live' then
