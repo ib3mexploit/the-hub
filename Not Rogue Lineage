@@ -1,0 +1,839 @@
+if game.CoreGui:FindFirstChild('Library') ~= nil then game.CoreGui.Library:Destroy() end
+
+local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vep1032/VepStuff/main/VL"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/notification%20library", true))()
+local hwidlist = loadstring(game:HttpGet(('https://raw.githubusercontent.com/eshoradecagar/eshoradecagar/main/access')))()
+local HWID = game:GetService('RbxAnalyticsService'):GetClientId()
+if not hwidlist[HWID] == nil then 
+    game.Players.LocalPlayer:Kick('man get yo goofy ass off my script bruh :skull:')
+    VLib = nil
+    return
+end
+local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local TidalHub = VLib:Window("Tidal Hub", GameName, "v^S")
+
+getgenv().ArtifactEsp = false
+getgenv().ArtifactEspRange = 750
+getgenv().FlySpeed = 250
+
+getgenv().AutoPickup = false
+
+
+
+
+local Exploit = {
+
+	Settings = {
+		AttachingToBack = false;
+		Teleporting = false;
+		NoFallDamage = false;
+		AutoBagPickup = false;
+		_Font = "Bodoni";
+		HealerVision = false;
+		TrinketESP = false;
+		PlayerESP = false;
+		ConsLabAutoFarm = false;
+		GuiOpen = true;
+		SpearDash = false;
+		DoubleJump = false;
+		NoKillBricks = false;
+		AutoTrinketPickup = false;
+	};	Colors = {
+		Trinkets = {
+			["Azael Horn"] = Color3.new(1, 0, 0),
+			["Scroom Key"] = Color3.new(1, 1, 0),
+			["Lannis Amulet"] = Color3.new(0.666667, 0.333333, 1),
+			["Rift Gem"] = Color3.new(1, 0, 1),
+			["Amulet of the White King"] = Color3.new(0.901961, 0.901961, 0.447059),
+			["Phoenix Down"] = Color3.new(1, 0.666667, 0),
+			["Philosophers Stone"] = Color3.new(1, 0.333333, 0.498039),
+			["Ice Essence"] = Color3.new(0.666667, 1, 1),
+			["Spider Cloak"] = Color3.new(1, 1, 0),
+			["Idol of the Forgotten"] = Color3.new(0.694118, 0.694118, 0.694118),
+			["???"] = Color3.new(0.666667, 0.333333, 1),
+			["Old Ring"] = Color3.new(0.666667, 0.666667, 0.498039),
+			["Old Amulet"] = Color3.new(0.666667, 0.666667, 0.498039),
+			["Night Stone"] = Color3.new(0.666667, 0.666667, 1),
+			['Mysterious Artifact'] = Color3.new(0.1, 0.8, 0),
+			Fairfrozen = Color3.new(0, 1, 1),
+			Ring = Color3.new(0.694118, 0.694118, 0.694118),
+			Amulet = Color3.new(0.694118, 0.694118, 0.694118),
+			Opal = Color3.new(0.886275, 0.886275, 0.886275),
+			Sapphire = Color3.new(0, 0.333333, 1),
+			Emerald = Color3.new(0, 1, 0),
+			Diamond = Color3.new(0.533333, 0.8, 0.8),
+			Goblet = Color3.new(0.65098, 0.435294, 0),
+			Scroll = Color3.new(1, 0.666667, 0),
+			Candy = Color3.new(0.666667, 1, 0.498039),
+			Ruby = Color3.new(1, 0, 0)
+		}
+
+	};
+	AutoFarmPoints = {
+		["Tundra 2"] = {
+			3982.49805, 553.293762, -498.717529,
+			4013.74536, 553.293762, -546.454773,
+			3889.92603, 553.293884, -545.354309,
+			3918.22534, 553.293762, -498.919891,
+			3918.46216, 553.293762, -451.310699,
+			3979.88135, 553.293762, -383.164124,
+			3980.12158, 553.293823, -334.594086,
+			3913.94897, 553.293823, -334.159851,
+			4010.87622, 553.293762, -401.340454,
+			3921.28, 553.294, -413.868,
+			4018.15088, 439.293854, -1015.15369,
+			4007.42285, 439.293854, -1014.5849,
+			3999.70337, 439.293854, -1013.95752,
+			3976.95117, 439.293854, -1013.47498,
+
+
+		}
+	},
+	Classes = {
+		Warrior = {
+			skills = {
+				"Action Surge",
+				"LordsTraining",
+				"MercenaryCarry",
+			},
+			price = 35,
+		},
+		Samurai = {
+			skills = {
+				"Triple Slash",
+				"Blade Flash",
+				"Flowing Counter",
+				"BuyKatana",
+			},
+			price = 125,
+			requiredclass = "",
+			class = "Samurai",
+		},
+		Ronin = {
+			skills = {
+				"Sheathe Mastery",
+				"Calm Mind",
+				"Samurai",
+			},
+			price = 250,
+			requiredclass = "Samurai",
+			class = "Ronin",
+			isultra = true,
+		},
+		Spear = {
+			skills = {
+				"SpearDash",
+				"Triple Strike",
+				"Serpent Strike",
+			},
+			price = 35,
+		},
+		DragonKnight = {
+			skills = {
+				"Spear Crusher",
+				"Dragon Roar",
+				"Dragon Blood",
+			},
+			price = 100,
+			requiredclass = "",
+			class = "Dragon Knight",
+			ultra = "Dragon Slayer",
+		},
+		DragonSlayer = {
+			skills = {
+				"Wing Soar",
+				"Thunder Spear Crash",
+				"DragonBloodUpgrade"
+			},
+			price = 350,
+			requiredclass = "Dragon Knight",
+			class = "Dragon Slayer",
+			isultra = true,
+		},
+		ChurchKnight = {
+			skills = {
+				"Church Knight Helmet",
+				--"Chain Pull",
+				"Light Piercer",
+				"Impale",
+			},
+			price = 150,
+			requiredclass = "",
+			class = "ChurchKnight",
+		},
+		DeepKnight = {
+			skills = {
+				"Deep Knight Helmet",
+				"Chain Pull",
+				"Deep Sacrifice",
+				"Leviathan Plunge",
+			},
+			price = 350,
+			requiredclass = "ChurchKnight",
+			class = "DeepKnight",
+			isultra = true,
+		},
+		SigilKnight = {
+			skills = {
+				"Ice Charge",
+				"Thunder Charge",
+				"Flame Charge",
+			},
+			price = 65,
+			requiredclass = "",
+			class = "SigilKnight",
+			ultra = "SigilKnightCommander",
+		},
+		DarkSigilKnight = {
+			skills = {
+				"WraithTraining",
+				"MasteredRune",
+				"ChargeMastery",
+				"Dark Flame Burst",
+				"Dark Eruption",
+				"Dark Sigil Helmet",
+			},
+			price = 350,
+			requiredclass = "SigilKnight",
+			class = "DarkSigilKnight",
+			isultra = true,
+			firstskill = "WraithTraining",
+		},
+		SigilKnightCommander = {
+			skills = {
+				"Charged Blow",
+				"Hyper Body",
+				"ChargeMastery",
+			},
+			price = 350,
+			requiredclass = "SigilKnight",
+			class = "SigilKnightCommander",
+			isultra = true,
+		},
+		Monk = {
+			skills = {
+				"ChiBlock",
+				"HolyFire",
+				"IronBody",
+				"TrainedCombat",
+			},
+			price = 40,
+			requiredclass = "",
+			class = "Monk",
+		},
+		DragonSage = {
+			skills = {
+				"Lightning Elbow",
+				"Lightning Drop",
+				"DragonDash",
+			},
+			price = 350,
+			requiredclass = "Monk",
+			class = "DragonSage",
+			isultra = true,
+		},
+		Akuma = {
+			skills = {
+				"Goshoryu",
+				"Leg Breaker",
+				"Spin Kick",
+				"TrainedCombat",
+			},
+			price = 60,
+			requiredclass = "",
+			class = "Akuma",
+			ultra = "Oni",
+		},
+		Oni = {
+			skills = {
+				"Demon Step",
+				"Demon Flip",
+				"Axe Kick",
+				"Misogi",
+			},
+			price = 350,
+			requiredclass = "Akuma",
+			class = "Oni",
+			isultra = true,
+		},
+		Botanist = {
+			skills = {
+				"Life Sense",
+				"Verdien",
+			},
+			price = 60,
+			requiredclass = "",
+			class = "Botanist",
+			ultra = "Florist",
+		},
+		Florist = {
+			skills = {
+				"Floresco",
+				"Nature Mastery",
+				"ObserveBlock",
+				"Perflora",
+			},
+			price = 350,
+			requiredclass = "Botanist",
+			class = "Florist",
+			isultra = true,
+		},
+		Thief = {
+			skills = {"Agility","Dagger Throw"},
+			price = 45,
+		},
+		Spy = {
+			skills = {
+				"Silverguard",
+				"FeatherFall",
+			},
+			price = 60,
+			requiredclass = "",
+			class = "Spy",
+			ultra = "Whisper",
+		},
+		Whisper = {
+			skills = {
+				"Needle's Eye",
+				"Elegant Slash",
+				"Acrobat",
+			},
+			price = 350,
+			requiredclass = "Spy",
+			class = "Whisper",
+			isultra = true,
+		},
+		Assassin = {
+			skills = {"Bane","UpgradedAgility","Dagger Throw","Lethality","Triple Dagger Throw"},
+			price = 45,
+			class = "Assassin",
+			requiredclass = "",
+			ultra = "Faceless",
+		},
+		Faceless = {
+			skills = {
+				"UpgradedBane",
+				"Shadow Fan",
+				"Chain Lethality",
+				"Ethereal Strike",
+				"ShadowDash"
+			},
+			price = 350,
+			requiredclass = "Assassin",
+			class = "Faceless",
+			isultra = true,
+		},
+		Shinobi = {
+			skills = {
+				"Grapple",
+				"Owl Slash",
+				"Shadowrush",
+				"FeatherFall",
+				"ShadowrushAerial",
+			},
+			price = 350,
+			requiredclass = "Assassin",
+			class = "Shinobi",
+			isultra = true,
+		},
+	}
+}
+
+-- Functions
+
+function _gettrinketcolor(Trinket)
+	local Color = nil
+	Color = Exploit.Colors.Trinkets[Trinket]
+	return Color
+end
+
+function newESP(part, artifact, region, trinketcolor)
+
+	local ninining = Instance.new("BillboardGui")
+	local Frame = Instance.new("Frame")
+	local Artifact = Instance.new("TextLabel")
+	local Region = Instance.new("TextLabel")
+
+	--Properties:
+
+	ninining.Name = "数"
+    if getgenv().ArtifactEsp ~= true then
+        ninining.Enabled = false
+    end
+	ninining.Parent = part
+	ninining.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	ninining.Active = true
+	ninining.AlwaysOnTop = true
+	ninining.LightInfluence = 1.000
+	ninining.MaxDistance = getgenv().ArtifactEspRange
+	ninining.Size = UDim2.new(0, 200, 0, 50)
+
+	Frame.Parent = ninining
+	Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Frame.BackgroundTransparency = 1.000
+	Frame.Size = UDim2.new(0, 200, 0, 50)
+
+	Artifact.Name = "Artifact"
+	Artifact.Parent = Frame
+	Artifact.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Artifact.BackgroundTransparency = 1.000
+	Artifact.Size = UDim2.new(0, 200, 0, 25)
+	Artifact.Font = Enum.Font.Roboto
+	Artifact.Text = artifact
+	Artifact.TextColor3 = trinketcolor
+	Artifact.TextScaled = true
+	Artifact.TextSize = 14.000
+	Artifact.TextWrapped = true
+	Artifact.TextYAlignment = 'Bottom'
+
+	Region.Name = "Region"
+	Region.Parent = Frame
+	Region.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Region.BackgroundTransparency = 1.000
+	Region.Position = UDim2.new(0, 0, 0.5, 0)
+	Region.Size = UDim2.new(0, 200, 0, 25)
+	Region.Font = Enum.Font.Roboto
+	Region.Text = region
+	Region.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Region.TextScaled = true
+	Region.TextSize = 14.000
+	Region.TextWrapped = true
+	Region.TextYAlignment = 'Top'
+
+	if Artifact.Text == 'Phoenix Down' or Artifact.Text == 'Flower Artifact' or Artifact.Text == 'Azael Horn' then
+		Artifact.Text = 'Flower Artifact'
+		--Artifact.TextColor3 = Color3.fromRGB(255,255,255)
+		local Gradient = Instance.new('UIGradient')
+		print('gradient created')
+		Gradient.Parent = Artifact
+		Gradient.Color = ColorSequence.new{
+			ColorSequenceKeypoint.new(0, _gettrinketcolor('Phoenix Down')),
+			ColorSequenceKeypoint.new(1, _gettrinketcolor('Azael Horn'))
+		}
+		Artifact.TextColor3 = Color3.new(255,255,255)
+	end
+end
+
+function CheckWhatTrinket(ToCheck)
+	task.wait()
+	local TrinketModule = {
+		TrinketType = nil,
+		TrinketColor = nil,
+		IsArtifact = nil,
+		AlreadyFound = false
+	}
+	local function AddTrinketValues(One,Two,Three,Four)
+		TrinketModule.TrinketType = One
+		TrinketModule.TrinketColor = Two
+		TrinketModule.IsArtifact = Three
+		TrinketModule.AlreadyFound = Four
+	end
+	if ToCheck.BrickColor == BrickColor.new("Medium Medium stone grey") and ToCheck:FindFirstChild("Attachment") then
+		print(tostring(ToCheck:FindFirstChild("Attachment"):FindFirstChild("ParticleEmitter").Color.Keypoints[1]))
+		if ToCheck:FindFirstChild("Attachment"):FindFirstChild("ParticleEmitter").Rate == 3 then
+			AddTrinketValues("Mysterious Artifact",_gettrinketcolor("Mysterious Artifact"),true,true)
+		else
+			AddTrinketValues("Phoenix Down",_gettrinketcolor("Phoenix Down"),true,true)
+		end
+
+	end
+	if ToCheck.BrickColor == BrickColor.new("Daisy orange") and ToCheck.Material == Enum.Material.DiamondPlate then
+		AddTrinketValues("Scroom Key",_gettrinketcolor("Scroom Key"),true,true)
+	end
+	if ToCheck.Material == Enum.Material.Slate and ToCheck.BrickColor == BrickColor.new("Dark grey") then
+		AddTrinketValues("Idol of the Forgotten",_gettrinketcolor("Idol of the Forgotten"),false,true)
+	end
+	if ToCheck.Material == Enum.Material.Neon and ToCheck.BrickColor == BrickColor.new("Persimmon") and ToCheck:FindFirstChild("OrbParticle") then
+		AddTrinketValues("Ice Essence",_gettrinketcolor("Ice Essence"),false,true)
+	end
+	if ToCheck.Material == Enum.Material.Neon then
+		if ToCheck.BrickColor == BrickColor.new("Institutional white") then
+			if ToCheck:FindFirstChild("PointLight") then
+				AddTrinketValues("Amulet of the White King",_gettrinketcolor("Amulet of the White King"),true,true)
+			else	
+				AddTrinketValues("Lannis Amulet",_gettrinketcolor("Lannis Amulet"),true,true)
+			end
+		elseif ToCheck.BrickColor == BrickColor.new("Persimmon") and not ToCheck:FindFirstChild("OrbParticle") then
+			AddTrinketValues("Philosophers Stone",_gettrinketcolor("Philosophers Stone"),true,true)
+		elseif ToCheck.BrickColor == BrickColor.new("Black") then
+			AddTrinketValues("Night Stone",_gettrinketcolor("Night Stone"),true,true)
+		elseif ToCheck.BrickColor == BrickColor.new("Pastel Blue")	 then
+			AddTrinketValues("Fairfrozen",_gettrinketcolor("Fairfrozen"),true,true)
+		elseif ToCheck.BrickColor == BrickColor.new("New Yeller") and ToCheck:FindFirstChild("OrbParticle") then
+			AddTrinketValues("Spider Cloak",_gettrinketcolor("Spider Cloak"),true,true)
+		end
+
+	elseif ToCheck.Material == Enum.Material.Glass and ToCheck.BrickColor == BrickColor.new("Hot pink") then
+		AddTrinketValues("Rift Gem",_gettrinketcolor("Rift Gem"),true,true)
+	end
+	if ToCheck:FindFirstChild("Mesh") and not TrinketModule.AlreadyFound == true then
+		if ToCheck.Mesh.MeshId == "rbxassetid://%2013116112%20" then
+			AddTrinketValues("Goblet",_gettrinketcolor("Goblet"),false,true)
+		end
+		if ToCheck.Material == Enum.Material.Glass and ToCheck.Reflectance == 0.5 and ToCheck.Size == Vector3.new(0.4, 0.5, 0.3) then
+			AddTrinketValues("Opal",_gettrinketcolor("Opal"),false,true)
+
+		elseif ToCheck.Mesh.MeshId == "rbxassetid://%202877143560%20" then
+			if ToCheck.BrickColor == BrickColor.new("Cadet blue") then
+				AddTrinketValues("Diamond",_gettrinketcolor("Diamond"),false,true)
+			elseif ToCheck.BrickColor == BrickColor.new("Forest green") then
+				AddTrinketValues("Emerald",_gettrinketcolor("Emerald"),false,true)
+			elseif ToCheck.BrickColor == BrickColor.new("Lapis") then
+				AddTrinketValues("Sapphire",_gettrinketcolor("Sapphire"),false,true)
+
+			end
+		elseif ToCheck:FindFirstChild("OrbParticle") then
+			if ToCheck:FindFirstChild("OrbParticle").LightEmission == 0.9 then
+			else
+				AddTrinketValues("???",_gettrinketcolor("???"),false,true)
+			end
+		end
+	else
+		if not TrinketModule.AlreadyFound == true then
+			TrinketModule.AlreadyFound = true
+			if ToCheck.MeshId == "rbxassetid://5204453430" then
+				AddTrinketValues("Scroll",_gettrinketcolor("Scroll"),false,true)
+			elseif ToCheck.MeshId == "rbxassetid://%202877143560%20" then
+				AddTrinketValues("Ruby",_gettrinketcolor("Ruby"),false,true)
+			elseif ToCheck.MeshId == "rbxassetid://5196577540" then
+				AddTrinketValues("Old Amulet",_gettrinketcolor("Old Amulet"),false,true)
+			elseif ToCheck.MeshId == "rbxassetid://5196551436" then
+				AddTrinketValues("Amulet",_gettrinketcolor("Amulet"),false,true)
+			elseif ToCheck.MeshId == "rbxassetid://5196782997" then
+				AddTrinketValues("Old Ring",_gettrinketcolor("Old Ring"),false,true)
+			elseif ToCheck.MeshId == "rbxassetid://5196776695" then
+				AddTrinketValues("Ring",_gettrinketcolor("Ring"),false,true)
+			elseif ToCheck.MeshId == "rbxassetid://923469333" then
+				AddTrinketValues("Candy",_gettrinketcolor("Candy"),false,true)
+
+			end
+		end
+	end
+	return TrinketModule
+end
+
+-- ESP
+--[[local ESP = TidalHub:Tab('ESP')
+
+ESP:Toggle("Artifact ESP",function(t)
+    getgenv().ArtifactEsp = t
+    for _,BillboardGui in pairs(workspace.Trinkets:GetDescendants()) do
+        if BillboardGui.Name == '数' then
+            if t == true then
+                BillboardGui.Enabled = true
+            else
+                BillboardGui.Enabled = false
+            end
+        end
+    end
+end)
+    
+    
+ESP:Slider("ESP Range",500,10000,2500,function(t)
+    getgenv().ArtifactEspRange = t
+    for _,BillboardGui in pairs(workspace.Trinkets:GetDescendants()) do
+        if BillboardGui.Name == '数' then
+            BillboardGui.MaxDistance = t
+        end
+    end
+end)]]
+
+-- Main Exploits
+
+local MainExploits = TidalHub:Tab('Main Exploits')
+
+local mouse = game.Players.LocalPlayer:GetMouse()
+local userinput = game:GetService("UserInputService")
+local speed = 250
+local keybindToFly = Enum.KeyCode.Z
+RunService = game:GetService("RunService")
+getgenv().FlyEnabled = false
+userinput.InputBegan:Connect(function(input,typing)
+	if typing then
+		return
+	end
+	if input.KeyCode == keybindToFly and getgenv().FlyEnabled then
+		_G.Active = true
+		RunService:BindToRenderStep("flyActive", 1, function()
+			if _G.Active == false then RunService:UnbindFromRenderStep("flyActive") end
+			game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = mouse.Hit.lookVector * speed
+		end)
+	end
+end)
+
+userinput.InputEnded:Connect(function(input)
+	if input.KeyCode == keybindToFly then _G.Active = false end
+end)
+
+MainExploits:Toggle('[Z] Fly', function(t)
+	getgenv().FlyEnabled = t
+end)
+MainExploits:Toggle("No Fall Damage",function(t)
+	while t do task.wait()
+        pcall(function()
+			if t == true then
+				game.Players.LocalPlayer.Character:FindFirstChild('CharacterHandler'):FindFirstChild('Remotes').FallDamage.Name = 'Ban'
+			else
+				game.Players.LocalPlayer.Character:FindFirstChild('CharacterHandler'):FindFirstChild('Remotes').Ban.Name = 'FallDamage'
+			end
+        end)
+    end
+end)
+
+
+MainExploits:Toggle("No Kill Bricks",function(t)
+    for _,v in pairs(workspace.Map:GetChildren()) do
+        if v.Name == "KillBrick" or v.Name == "Lava" or v.Name == "PitKillBrick" or v.Name == "ArdorianKillbrick" or v.Name == "Fire" or v.Name == "KillFire" then
+            if v:FindFirstChild("TouchInterest") then
+                v.CanTouch = not t
+            end
+        end
+    end
+end)
+
+MainExploits:Toggle('No Orderly Barriers', function(t)
+	for _,v in pairs(workspace.Map:GetChildren()) do
+        if v.Name == "OrderField" then
+            if v:FindFirstChild("TouchInterest") then
+                v.CanTouch = not t
+				v.CanCollide = not t
+            end
+        end
+    end
+end)
+
+MainExploits:Toggle('Trinket Auto-Pickup', function(t)
+	getgenv().AutoPickup = t
+	local PickupModule = {
+		PickUpCooldown = 1,
+		CanPick = true,
+		TrinketFolder = workspace.Trinkets
+	}
+	while getgenv().AutoPickup do
+		task.wait(.1)
+		for _,v in pairs(workspace.Trinkets:GetChildren()) do
+			if v:FindFirstChild("ClickPart") then
+				local DistanceCheck = v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+				if PickupModule.CanPick == true and DistanceCheck.Magnitude < 9 then 
+					local Detector = v.ClickPart:FindFirstChild("ClickDetector")
+					PickupModule.CanPick = false
+					pcall(function()
+					fireclickdetector(Detector)
+					end)
+					delay(.1,function()
+						PickupModule.CanPick = true
+					end)
+				end
+			end
+		end
+	end
+end)
+
+
+-- Tidals Stupid Shit
+
+if HWID == '9864B118-0168-41DE-B601-16535777B936' then
+	
+	local Specs = TidalHub:Tab('Special')
+
+	Specs:Button("Counter Replacement",function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild('FULLCOUNTER').SoundId = 'rbxassetid://2370794297'
+		game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild('FULLCOUNTER').PlaybackSpeed = 1
+	end)
+
+end
+
+
+-- Instants
+--[[
+local Instants = TidalHub:Tab('Instants')
+
+Instants:Dropdown("Instant Obelisk",{"Forest", "DeepForest", "Tundra", "Sigil", "SkyCastle" , 'Snail'},function(t)
+    local CoreGui = game:GetService("StarterGui") CoreGui:SetCore("SendNotification",{Title = "TidalHub Alert";Text = "This feature is unfinished.";Duration = 2;})
+    fireclickdetector(workspace.NPCs['Obelisk'..t].HumanoidRootPart.ClickDetector)
+end)
+
+Instants:Button("Instant Sigil Helm",function()
+    local CoreGui = game:GetService("StarterGui") CoreGui:SetCore("SendNotification",{Title = "TidalHub Alert";Text = "This feature is unfinished.";Duration = 2;})
+    fireclickdetector(workspace.NPCs.Kyley.ClickDetector)
+end)
+
+Instants:Button("Instant Scholar",function()
+    local CoreGui = game:GetService("StarterGui") CoreGui:SetCore("SendNotification",{Title = "TidalHub Alert";Text = "This feature is unfinished.";Duration = 2;})
+    fireclickdetector(workspace.NPCs.Fallion.ClickDetector)
+end)
+
+Instants:Button("Instant Strange Feather",function()
+    local CoreGui = game:GetService("StarterGui") CoreGui:SetCore("SendNotification",{Title = "TidalHub Alert";Text = "This feature is unfinished.";Duration = 2;})
+end)
+]]
+
+-- Tidalhub Universal & Others
+local Universal = TidalHub:Tab('Universal')
+
+Universal:Button("Dark Dex",function()
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/DinosaurXxX/b757fe011e7e600c0873f967fe427dc2/raw/ee5324771f017073fc30e640323ac2a9b3bfc550/dark%2520dex%2520v4"))()
+end)
+Universal:Button("Unnamed ESP",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Forked%20Unnamed", true))()
+end)
+Universal:Button("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+Universal:Button("Full Bright",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Fullbright'))()
+end)
+
+--[[Universal:Button("Destroy Gui",function()
+	for _,BillboardGui in pairs(workspace.Trinkets:GetDescendants()) do
+        if BillboardGui.Name == '数' then
+			BillboardGui:Destroy()
+        end
+    end
+	game.CoreGui.Library:Destroy()
+	script:Destroy()
+end)]]
+
+-- DELETED, NEEDS REWORK
+--[[
+Universal:Toggle("Roblox Chat",function(bool)
+    game:GetService("Chat"):RegisterChatCallback(Enum.ChatCallbackType.OnCreatingChatWindow, function()
+        return {ClassicChatEnabled = bool, BubbleChatEnabled = true}
+    end)
+end)
+]]
+local Information = TidalHub:Tab("Information")
+
+Information:Label(HWID)
+Information:Label('https://discord.gg/stSt3FuvcC')
+
+-- Moderator Detection
+
+for _,Player in pairs(game.Players:GetChildren()) do
+    print('checking if '.. Player.Name .. ' is a moderator')
+    if (Player:GetRoleInGroup(10569041) ~= 'Access' and Player:IsInGroup(10569041)) or Player.Backpack:FindFirstChild('eggyweggyObelisk') ~= nil then
+        Notification.new("error", "Possible Moderator Detected", ("@(" .. Player.Name ..")" .. " meets one or more conditions to be a moderator."))
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(Player)
+    if (Player:GetRoleInGroup(10569041) ~= 'Access' and Player:IsInGroup(10569041)) or Player.Backpack:FindFirstChild('eggyweggyObelisk') ~= nil then
+        Notification.new("error", "Possible Moderator Detected", ("@(" .. Player.Name ..")" .. " meets one or more conditions to be a moderator."))
+    end
+end)
+
+game.Players.PlayerRemoving:Connect(function(Player)
+    if (Player:GetRoleInGroup(10569041) ~= 'Access' and Player:IsInGroup(10569041)) or Player.Backpack:FindFirstChild('eggyweggyObelisk') ~= nil then
+        Notification.new("error", "Moderator Left", ("@(" .. Player.Name ..")" .. " has left the game."))
+    end
+end)
+
+-- Illusionist Notifier
+
+local ScriptContext = game:GetService("ScriptContext")
+
+for i,v in next, getconnections(ScriptContext.Error) do
+    v:Disable()
+end
+
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local RunService = game:GetService("RunService")
+
+local illusionists = {}
+local illusionistCounter = 0
+
+Check = function(plr)
+    if plr == Players.LocalPlayer then return false end
+    if not plr.Character then return false end
+
+    if plr.Character:FindFirstChild("Observe") then
+        return true
+    else
+        if plr.Backpack:FindFirstChild("Observe") then
+            return true
+        else
+            return false
+        end
+    end
+end
+
+for _,v in pairs(Players:GetPlayers()) do
+    if Check(v) == true then
+        Notification.new("warning", "Illusionist Detected", ('Illusionist ' .. v.Name .. ' is in the the game.'))
+        illusionistCounter = illusionistCounter +1
+        table.insert(illusionists, illusionistCounter, v)
+    end
+    v.CharacterAdded:Connect(function()
+        if not table.find(illusionists, v) then
+            RunService.RenderStepped:Wait()
+            if Check(v) == true then
+                Notification.new("warning", "Illusionist Detected", ('Illusionist ' .. v.Name .. ' is in the the game.'))
+                illusionistCounter = illusionistCounter +1
+                table.insert(illusionists, illusionistCounter, v)
+            end
+        end
+    end)
+end
+
+Players.PlayerAdded:Connect(function(plr)
+	plr.CharacterAdded:Connect(function(char)
+		if Check(plr) == true then
+			Notification.new("warning", "Illusionist Joined", ('Illusionist ' .. plr.Name .. ' has joined the game.'))
+			illusionistCounter = illusionistCounter +1
+			table.insert(illusionists, illusionistCounter, plr)
+		else
+		end
+	end)
+end)
+
+Players.PlayerRemoving:Connect(function(plr)
+    if table.find(illusionists, plr) then
+        for i,v in pairs(illusionists) do
+            if v == plr then
+                table.remove(illusionists, i)
+                illusionistCounter = illusionistCounter -1
+            end
+        end
+        Notification.new("warning", "Illusionist Left", ('Illusionist ' .. plr.Name .. ' has left the game.'))
+    end
+end)
+
+
+
+
+Notification.new('success', 'Tidal Hub Premium', 'Reached end of file.', true, 10)
+
+
+
+--[[
+ss:Button("Button",function()
+print("Pressed!")
+end)
+
+
+ss:Toggle("Toggle",function(t)
+print(t)
+    end)
+
+
+ss:Slider("Slider",0,100,70,function(t)
+print(t)
+end)
+
+
+ss:Dropdown("Dropdown",{"Option 1", "Option 2", "Option 3", "Option 4", "Option 5"},function(t)
+print(t)
+end)
+   
+   
+ss:Colorpicker("Colorpicker",Color3.fromRGB(255, 1, 1),function(t)
+print(t)
+    end)
+
+ss:Textbox("Textbox", true,function(t)
+print(t)
+end)
+
+ss:Label("Label")
+]]
