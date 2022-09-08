@@ -144,7 +144,7 @@ local CustomTeams = { -- Games that don't use roblox's team system
 			return LocalTeam[Player.Name] and true or false;
 		end;
 	};
-	[9840631765] = {
+	[10829443763] = {
 		CheckTeam = function(Player)
 			local LocalLastName = LocalPlayer.leaderstats.LastName.Value if not LocalLastName or IsStringEmpty(LocalLastName) then return true end
 			local PlayerLastName = Player.leaderstats.LastName.Value if not PlayerLastName then return false end
@@ -207,7 +207,7 @@ local GetAliveState;
 local CustomRootPartName;
 
 local Modules = {
-	[9840631765] = {
+	[10829443763] = {
 		CustomESP = function()
 			-- if workspace:FindFirstChild'Live' then
 			-- 	for i, v in pairs(workspace.Live:GetChildren()) do
