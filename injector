@@ -14,6 +14,6 @@ if game.PlaceId == 10046664286 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Popeyes%20Lineage%20Khei"))()
 end
 
-if game.PlaceId == 10829443763 then
+if game.PlaceId == 10858274778 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ib3mexploit/the-hub/main/Not%20Rogue%20Lineage"))()
 end
