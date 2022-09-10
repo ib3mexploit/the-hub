@@ -569,6 +569,9 @@ MainExploits:Toggle('[Z] Fly', function(t)
 	getgenv().FlyEnabled = t
 end)
 MainExploits:Toggle("No Fall Damage",function(t)
+	if not t then
+		game.Players.LocalPlayer.Character:FindFirstChild('CharacterHandler'):FindFirstChild('Remotes').Ban.Name = 'FallDamage'
+	end
 	while t do task.wait()
         pcall(function()
 			if t == true then
